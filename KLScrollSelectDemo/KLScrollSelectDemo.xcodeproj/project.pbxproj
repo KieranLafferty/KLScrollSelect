@@ -1,0 +1,682 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		77055D7F170CC36200790C8C /* libKLScrollSelect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77055D7A170CC35A00790C8C /* libKLScrollSelect.a */; };
+		77055D81170CC5D700790C8C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77055D80170CC5D700790C8C /* Social.framework */; };
+		77055D83170CC67300790C8C /* btn-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A4804C170CC2C600317375 /* btn-shadow.png */; };
+		77055D84170CC67300790C8C /* btn-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A4804D170CC2C600317375 /* btn-shadow@2x.png */; };
+		77055D85170CC67300790C8C /* city@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77A4804E170CC2C600317375 /* city@2x.jpg */; };
+		77055D86170CC67300790C8C /* expda-black-linen-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48050170CC2C600317375 /* expda-black-linen-background.png */; };
+		77055D87170CC67300790C8C /* expda-black-linen-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48051170CC2C600317375 /* expda-black-linen-background@2x.png */; };
+		77055D88170CC67300790C8C /* expda-gray-linen-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48052170CC2C600317375 /* expda-gray-linen-background.png */; };
+		77055D89170CC67300790C8C /* expda-gray-linen-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48053170CC2C600317375 /* expda-gray-linen-background@2x.png */; };
+		77055D8A170CC67300790C8C /* expda-launch-background-vignette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48054170CC2C600317375 /* expda-launch-background-vignette@2x.png */; };
+		77055D8B170CC67300790C8C /* expda-launch-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48055170CC2C600317375 /* expda-launch-btn.png */; };
+		77055D8C170CC67300790C8C /* expda-launch-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48056170CC2C600317375 /* expda-launch-btn@2x.png */; };
+		77055D8D170CC67300790C8C /* expda-launch-divider-and-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48057170CC2C600317375 /* expda-launch-divider-and-shadow.png */; };
+		77055D8E170CC67300790C8C /* expda-launch-divider-and-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48058170CC2C600317375 /* expda-launch-divider-and-shadow@2x.png */; };
+		77055D8F170CC67300790C8C /* expda-launch-linen.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48059170CC2C600317375 /* expda-launch-linen.png */; };
+		77055D90170CC67300790C8C /* expda-launch-linen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A4805A170CC2C600317375 /* expda-launch-linen@2x.png */; };
+		77055D91170CC69F00790C8C /* LeftCityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77A4804F170CC2C600317375 /* LeftCityList.plist */; };
+		77055D92170CC69F00790C8C /* Geometric415Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77A4805B170CC2C600317375 /* Geometric415Medium.ttf */; };
+		77055D99170CC71200790C8C /* newyork@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77055D95170CC71200790C8C /* newyork@2x.jpg */; };
+		77055D9A170CC71200790C8C /* rome@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77055D96170CC71200790C8C /* rome@2x.jpg */; };
+		77055D9B170CC71200790C8C /* venice@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77055D97170CC71200790C8C /* venice@2x.jpg */; };
+		77055D9C170CC71200790C8C /* vientiane@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77055D98170CC71200790C8C /* vientiane@2x.jpg */; };
+		77055D9E170CC75D00790C8C /* liverpool@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77055D9D170CC75D00790C8C /* liverpool@2x.jpg */; };
+		77601EA81711182B00764E3A /* RightCityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77601EA71711182B00764E3A /* RightCityList.plist */; };
+		77A48006170CC1AA00317375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A48005170CC1AA00317375 /* UIKit.framework */; };
+		77A48008170CC1AA00317375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A48007170CC1AA00317375 /* Foundation.framework */; };
+		77A4800A170CC1AA00317375 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A48009170CC1AA00317375 /* CoreGraphics.framework */; };
+		77A48010170CC1AA00317375 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A4800E170CC1AA00317375 /* InfoPlist.strings */; };
+		77A48012170CC1AA00317375 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A48011170CC1AA00317375 /* main.m */; };
+		77A48016170CC1AA00317375 /* KLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A48015170CC1AA00317375 /* KLAppDelegate.m */; };
+		77A48018170CC1AA00317375 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48017170CC1AA00317375 /* Default.png */; };
+		77A4801A170CC1AA00317375 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48019170CC1AA00317375 /* Default@2x.png */; };
+		77A4801C170CC1AA00317375 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A4801B170CC1AA00317375 /* Default-568h@2x.png */; };
+		77A4801F170CC1AA00317375 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77A4801D170CC1AA00317375 /* MainStoryboard.storyboard */; };
+		77A48022170CC1AA00317375 /* KLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A48021170CC1AA00317375 /* KLViewController.m */; };
+		77A4802A170CC1AA00317375 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A48029170CC1AA00317375 /* SenTestingKit.framework */; };
+		77A4802B170CC1AA00317375 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A48005170CC1AA00317375 /* UIKit.framework */; };
+		77A4802C170CC1AA00317375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A48007170CC1AA00317375 /* Foundation.framework */; };
+		77A48034170CC1AA00317375 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A48032170CC1AA00317375 /* InfoPlist.strings */; };
+		77A48037170CC1AA00317375 /* KLScrollSelectDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A48036170CC1AA00317375 /* KLScrollSelectDemoTests.m */; };
+		77A4805C170CC2C600317375 /* btn-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A4804C170CC2C600317375 /* btn-shadow.png */; };
+		77A4805D170CC2C600317375 /* btn-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A4804D170CC2C600317375 /* btn-shadow@2x.png */; };
+		77A4805E170CC2C600317375 /* city@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77A4804E170CC2C600317375 /* city@2x.jpg */; };
+		77A4805F170CC2C600317375 /* LeftCityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77A4804F170CC2C600317375 /* LeftCityList.plist */; };
+		77A48060170CC2C600317375 /* expda-black-linen-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48050170CC2C600317375 /* expda-black-linen-background.png */; };
+		77A48061170CC2C600317375 /* expda-black-linen-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48051170CC2C600317375 /* expda-black-linen-background@2x.png */; };
+		77A48062170CC2C600317375 /* expda-gray-linen-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48052170CC2C600317375 /* expda-gray-linen-background.png */; };
+		77A48063170CC2C600317375 /* expda-gray-linen-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48053170CC2C600317375 /* expda-gray-linen-background@2x.png */; };
+		77A48064170CC2C600317375 /* expda-launch-background-vignette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48054170CC2C600317375 /* expda-launch-background-vignette@2x.png */; };
+		77A48065170CC2C600317375 /* expda-launch-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48055170CC2C600317375 /* expda-launch-btn.png */; };
+		77A48066170CC2C600317375 /* expda-launch-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48056170CC2C600317375 /* expda-launch-btn@2x.png */; };
+		77A48067170CC2C600317375 /* expda-launch-divider-and-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48057170CC2C600317375 /* expda-launch-divider-and-shadow.png */; };
+		77A48068170CC2C600317375 /* expda-launch-divider-and-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48058170CC2C600317375 /* expda-launch-divider-and-shadow@2x.png */; };
+		77A48069170CC2C600317375 /* expda-launch-linen.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A48059170CC2C600317375 /* expda-launch-linen.png */; };
+		77A4806A170CC2C600317375 /* expda-launch-linen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77A4805A170CC2C600317375 /* expda-launch-linen@2x.png */; };
+		77A4806B170CC2C600317375 /* Geometric415Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77A4805B170CC2C600317375 /* Geometric415Medium.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		77055D79170CC35A00790C8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77055D74170CC35A00790C8C /* KLScrollSelect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77A47FC9170CC14700317375;
+			remoteInfo = KLScrollSelect;
+		};
+		77055D7B170CC35A00790C8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77055D74170CC35A00790C8C /* KLScrollSelect.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77A47FDA170CC14700317375;
+			remoteInfo = KLScrollSelectTests;
+		};
+		77055D7D170CC36000790C8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77055D74170CC35A00790C8C /* KLScrollSelect.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 77A47FC8170CC14700317375;
+			remoteInfo = KLScrollSelect;
+		};
+		77A4802D170CC1AA00317375 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A47FFA170CC1AA00317375 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 77A48001170CC1AA00317375;
+			remoteInfo = KLScrollSelectDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		77055D74170CC35A00790C8C /* KLScrollSelect.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KLScrollSelect.xcodeproj; path = ../../KLScrollSelect/KLScrollSelect.xcodeproj; sourceTree = "<group>"; };
+		77055D80170CC5D700790C8C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		77055D95170CC71200790C8C /* newyork@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "newyork@2x.jpg"; sourceTree = "<group>"; };
+		77055D96170CC71200790C8C /* rome@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rome@2x.jpg"; sourceTree = "<group>"; };
+		77055D97170CC71200790C8C /* venice@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "venice@2x.jpg"; sourceTree = "<group>"; };
+		77055D98170CC71200790C8C /* vientiane@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "vientiane@2x.jpg"; sourceTree = "<group>"; };
+		77055D9D170CC75D00790C8C /* liverpool@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "liverpool@2x.jpg"; sourceTree = "<group>"; };
+		77601EA71711182B00764E3A /* RightCityList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RightCityList.plist; sourceTree = "<group>"; };
+		77A48002170CC1AA00317375 /* KLScrollSelectDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KLScrollSelectDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		77A48005170CC1AA00317375 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		77A48007170CC1AA00317375 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		77A48009170CC1AA00317375 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		77A4800D170CC1AA00317375 /* KLScrollSelectDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KLScrollSelectDemo-Info.plist"; sourceTree = "<group>"; };
+		77A4800F170CC1AA00317375 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		77A48011170CC1AA00317375 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		77A48013170CC1AA00317375 /* KLScrollSelectDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KLScrollSelectDemo-Prefix.pch"; sourceTree = "<group>"; };
+		77A48014170CC1AA00317375 /* KLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLAppDelegate.h; sourceTree = "<group>"; };
+		77A48015170CC1AA00317375 /* KLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLAppDelegate.m; sourceTree = "<group>"; };
+		77A48017170CC1AA00317375 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		77A48019170CC1AA00317375 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		77A4801B170CC1AA00317375 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		77A4801E170CC1AA00317375 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		77A48020170CC1AA00317375 /* KLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLViewController.h; sourceTree = "<group>"; };
+		77A48021170CC1AA00317375 /* KLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLViewController.m; sourceTree = "<group>"; };
+		77A48028170CC1AA00317375 /* KLScrollSelectDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KLScrollSelectDemoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77A48029170CC1AA00317375 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		77A48031170CC1AA00317375 /* KLScrollSelectDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KLScrollSelectDemoTests-Info.plist"; sourceTree = "<group>"; };
+		77A48033170CC1AA00317375 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		77A48035170CC1AA00317375 /* KLScrollSelectDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLScrollSelectDemoTests.h; sourceTree = "<group>"; };
+		77A48036170CC1AA00317375 /* KLScrollSelectDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KLScrollSelectDemoTests.m; sourceTree = "<group>"; };
+		77A4804C170CC2C600317375 /* btn-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-shadow.png"; sourceTree = "<group>"; };
+		77A4804D170CC2C600317375 /* btn-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-shadow@2x.png"; sourceTree = "<group>"; };
+		77A4804E170CC2C600317375 /* city@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "city@2x.jpg"; sourceTree = "<group>"; };
+		77A4804F170CC2C600317375 /* LeftCityList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LeftCityList.plist; sourceTree = "<group>"; };
+		77A48050170CC2C600317375 /* expda-black-linen-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-black-linen-background.png"; sourceTree = "<group>"; };
+		77A48051170CC2C600317375 /* expda-black-linen-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-black-linen-background@2x.png"; sourceTree = "<group>"; };
+		77A48052170CC2C600317375 /* expda-gray-linen-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-gray-linen-background.png"; sourceTree = "<group>"; };
+		77A48053170CC2C600317375 /* expda-gray-linen-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-gray-linen-background@2x.png"; sourceTree = "<group>"; };
+		77A48054170CC2C600317375 /* expda-launch-background-vignette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-launch-background-vignette@2x.png"; sourceTree = "<group>"; };
+		77A48055170CC2C600317375 /* expda-launch-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-launch-btn.png"; sourceTree = "<group>"; };
+		77A48056170CC2C600317375 /* expda-launch-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-launch-btn@2x.png"; sourceTree = "<group>"; };
+		77A48057170CC2C600317375 /* expda-launch-divider-and-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-launch-divider-and-shadow.png"; sourceTree = "<group>"; };
+		77A48058170CC2C600317375 /* expda-launch-divider-and-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-launch-divider-and-shadow@2x.png"; sourceTree = "<group>"; };
+		77A48059170CC2C600317375 /* expda-launch-linen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-launch-linen.png"; sourceTree = "<group>"; };
+		77A4805A170CC2C600317375 /* expda-launch-linen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expda-launch-linen@2x.png"; sourceTree = "<group>"; };
+		77A4805B170CC2C600317375 /* Geometric415Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Geometric415Medium.ttf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		77A47FFF170CC1AA00317375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77055D81170CC5D700790C8C /* Social.framework in Frameworks */,
+				77055D7F170CC36200790C8C /* libKLScrollSelect.a in Frameworks */,
+				77A48006170CC1AA00317375 /* UIKit.framework in Frameworks */,
+				77A48008170CC1AA00317375 /* Foundation.framework in Frameworks */,
+				77A4800A170CC1AA00317375 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77A48024170CC1AA00317375 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77A4802A170CC1AA00317375 /* SenTestingKit.framework in Frameworks */,
+				77A4802B170CC1AA00317375 /* UIKit.framework in Frameworks */,
+				77A4802C170CC1AA00317375 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		77055D75170CC35A00790C8C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77055D7A170CC35A00790C8C /* libKLScrollSelect.a */,
+				77055D7C170CC35A00790C8C /* KLScrollSelectTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77055D93170CC6BF00790C8C /* Expedia Resources */ = {
+			isa = PBXGroup;
+			children = (
+				77A4804C170CC2C600317375 /* btn-shadow.png */,
+				77A4804D170CC2C600317375 /* btn-shadow@2x.png */,
+				77A48050170CC2C600317375 /* expda-black-linen-background.png */,
+				77A48051170CC2C600317375 /* expda-black-linen-background@2x.png */,
+				77A48052170CC2C600317375 /* expda-gray-linen-background.png */,
+				77A48053170CC2C600317375 /* expda-gray-linen-background@2x.png */,
+				77A48054170CC2C600317375 /* expda-launch-background-vignette@2x.png */,
+				77A48055170CC2C600317375 /* expda-launch-btn.png */,
+				77A48056170CC2C600317375 /* expda-launch-btn@2x.png */,
+				77A48057170CC2C600317375 /* expda-launch-divider-and-shadow.png */,
+				77A48058170CC2C600317375 /* expda-launch-divider-and-shadow@2x.png */,
+				77A48059170CC2C600317375 /* expda-launch-linen.png */,
+				77A4805A170CC2C600317375 /* expda-launch-linen@2x.png */,
+			);
+			name = "Expedia Resources";
+			sourceTree = "<group>";
+		};
+		77A47FF9170CC1AA00317375 = {
+			isa = PBXGroup;
+			children = (
+				77A4800B170CC1AA00317375 /* KLScrollSelectDemo */,
+				77A4802F170CC1AA00317375 /* KLScrollSelectDemoTests */,
+				77A48004170CC1AA00317375 /* Frameworks */,
+				77A48003170CC1AA00317375 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		77A48003170CC1AA00317375 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77A48002170CC1AA00317375 /* KLScrollSelectDemo.app */,
+				77A48028170CC1AA00317375 /* KLScrollSelectDemoTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		77A48004170CC1AA00317375 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77055D80170CC5D700790C8C /* Social.framework */,
+				77A48005170CC1AA00317375 /* UIKit.framework */,
+				77A48007170CC1AA00317375 /* Foundation.framework */,
+				77A48009170CC1AA00317375 /* CoreGraphics.framework */,
+				77A48029170CC1AA00317375 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77A4800B170CC1AA00317375 /* KLScrollSelectDemo */ = {
+			isa = PBXGroup;
+			children = (
+				77055D74170CC35A00790C8C /* KLScrollSelect.xcodeproj */,
+				77A48014170CC1AA00317375 /* KLAppDelegate.h */,
+				77A48015170CC1AA00317375 /* KLAppDelegate.m */,
+				77A4801D170CC1AA00317375 /* MainStoryboard.storyboard */,
+				77A48020170CC1AA00317375 /* KLViewController.h */,
+				77A48021170CC1AA00317375 /* KLViewController.m */,
+				77A4806D170CC2DB00317375 /* Resources */,
+				77A4800C170CC1AA00317375 /* Supporting Files */,
+			);
+			path = KLScrollSelectDemo;
+			sourceTree = "<group>";
+		};
+		77A4800C170CC1AA00317375 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77A4800D170CC1AA00317375 /* KLScrollSelectDemo-Info.plist */,
+				77A4800E170CC1AA00317375 /* InfoPlist.strings */,
+				77A48011170CC1AA00317375 /* main.m */,
+				77A48013170CC1AA00317375 /* KLScrollSelectDemo-Prefix.pch */,
+				77A48017170CC1AA00317375 /* Default.png */,
+				77A48019170CC1AA00317375 /* Default@2x.png */,
+				77A4801B170CC1AA00317375 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		77A4802F170CC1AA00317375 /* KLScrollSelectDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				77A48035170CC1AA00317375 /* KLScrollSelectDemoTests.h */,
+				77A48036170CC1AA00317375 /* KLScrollSelectDemoTests.m */,
+				77A48030170CC1AA00317375 /* Supporting Files */,
+			);
+			path = KLScrollSelectDemoTests;
+			sourceTree = "<group>";
+		};
+		77A48030170CC1AA00317375 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				77A48031170CC1AA00317375 /* KLScrollSelectDemoTests-Info.plist */,
+				77A48032170CC1AA00317375 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		77A4806C170CC2D000317375 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				77055D9D170CC75D00790C8C /* liverpool@2x.jpg */,
+				77055D95170CC71200790C8C /* newyork@2x.jpg */,
+				77055D96170CC71200790C8C /* rome@2x.jpg */,
+				77055D97170CC71200790C8C /* venice@2x.jpg */,
+				77055D98170CC71200790C8C /* vientiane@2x.jpg */,
+				77A4804E170CC2C600317375 /* city@2x.jpg */,
+				77055D93170CC6BF00790C8C /* Expedia Resources */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		77A4806D170CC2DB00317375 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				77A4806C170CC2D000317375 /* Images */,
+				77A4804F170CC2C600317375 /* LeftCityList.plist */,
+				77601EA71711182B00764E3A /* RightCityList.plist */,
+				77A4805B170CC2C600317375 /* Geometric415Medium.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		77A48001170CC1AA00317375 /* KLScrollSelectDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77A4803A170CC1AA00317375 /* Build configuration list for PBXNativeTarget "KLScrollSelectDemo" */;
+			buildPhases = (
+				77A47FFE170CC1AA00317375 /* Sources */,
+				77A47FFF170CC1AA00317375 /* Frameworks */,
+				77A48000170CC1AA00317375 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77055D7E170CC36000790C8C /* PBXTargetDependency */,
+			);
+			name = KLScrollSelectDemo;
+			productName = KLScrollSelectDemo;
+			productReference = 77A48002170CC1AA00317375 /* KLScrollSelectDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		77A48027170CC1AA00317375 /* KLScrollSelectDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77A4803D170CC1AA00317375 /* Build configuration list for PBXNativeTarget "KLScrollSelectDemoTests" */;
+			buildPhases = (
+				77A48023170CC1AA00317375 /* Sources */,
+				77A48024170CC1AA00317375 /* Frameworks */,
+				77A48025170CC1AA00317375 /* Resources */,
+				77A48026170CC1AA00317375 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				77A4802E170CC1AA00317375 /* PBXTargetDependency */,
+			);
+			name = KLScrollSelectDemoTests;
+			productName = KLScrollSelectDemoTests;
+			productReference = 77A48028170CC1AA00317375 /* KLScrollSelectDemoTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		77A47FFA170CC1AA00317375 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = KL;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = KieranLafferty;
+			};
+			buildConfigurationList = 77A47FFD170CC1AA00317375 /* Build configuration list for PBXProject "KLScrollSelectDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 77A47FF9170CC1AA00317375;
+			productRefGroup = 77A48003170CC1AA00317375 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 77055D75170CC35A00790C8C /* Products */;
+					ProjectRef = 77055D74170CC35A00790C8C /* KLScrollSelect.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				77A48001170CC1AA00317375 /* KLScrollSelectDemo */,
+				77A48027170CC1AA00317375 /* KLScrollSelectDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		77055D7A170CC35A00790C8C /* libKLScrollSelect.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKLScrollSelect.a;
+			remoteRef = 77055D79170CC35A00790C8C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		77055D7C170CC35A00790C8C /* KLScrollSelectTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KLScrollSelectTests.octest;
+			remoteRef = 77055D7B170CC35A00790C8C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		77A48000170CC1AA00317375 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77055D91170CC69F00790C8C /* LeftCityList.plist in Resources */,
+				77055D92170CC69F00790C8C /* Geometric415Medium.ttf in Resources */,
+				77055D83170CC67300790C8C /* btn-shadow.png in Resources */,
+				77055D84170CC67300790C8C /* btn-shadow@2x.png in Resources */,
+				77055D85170CC67300790C8C /* city@2x.jpg in Resources */,
+				77055D86170CC67300790C8C /* expda-black-linen-background.png in Resources */,
+				77055D87170CC67300790C8C /* expda-black-linen-background@2x.png in Resources */,
+				77055D88170CC67300790C8C /* expda-gray-linen-background.png in Resources */,
+				77055D89170CC67300790C8C /* expda-gray-linen-background@2x.png in Resources */,
+				77055D8A170CC67300790C8C /* expda-launch-background-vignette@2x.png in Resources */,
+				77055D8B170CC67300790C8C /* expda-launch-btn.png in Resources */,
+				77055D8C170CC67300790C8C /* expda-launch-btn@2x.png in Resources */,
+				77055D8D170CC67300790C8C /* expda-launch-divider-and-shadow.png in Resources */,
+				77055D8E170CC67300790C8C /* expda-launch-divider-and-shadow@2x.png in Resources */,
+				77055D8F170CC67300790C8C /* expda-launch-linen.png in Resources */,
+				77055D90170CC67300790C8C /* expda-launch-linen@2x.png in Resources */,
+				77A48010170CC1AA00317375 /* InfoPlist.strings in Resources */,
+				77A48018170CC1AA00317375 /* Default.png in Resources */,
+				77A4801A170CC1AA00317375 /* Default@2x.png in Resources */,
+				77A4801C170CC1AA00317375 /* Default-568h@2x.png in Resources */,
+				77A4801F170CC1AA00317375 /* MainStoryboard.storyboard in Resources */,
+				77055D99170CC71200790C8C /* newyork@2x.jpg in Resources */,
+				77055D9A170CC71200790C8C /* rome@2x.jpg in Resources */,
+				77055D9B170CC71200790C8C /* venice@2x.jpg in Resources */,
+				77055D9C170CC71200790C8C /* vientiane@2x.jpg in Resources */,
+				77055D9E170CC75D00790C8C /* liverpool@2x.jpg in Resources */,
+				77601EA81711182B00764E3A /* RightCityList.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77A48025170CC1AA00317375 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77A48034170CC1AA00317375 /* InfoPlist.strings in Resources */,
+				77A4805C170CC2C600317375 /* btn-shadow.png in Resources */,
+				77A4805D170CC2C600317375 /* btn-shadow@2x.png in Resources */,
+				77A4805E170CC2C600317375 /* city@2x.jpg in Resources */,
+				77A4805F170CC2C600317375 /* LeftCityList.plist in Resources */,
+				77A48060170CC2C600317375 /* expda-black-linen-background.png in Resources */,
+				77A48061170CC2C600317375 /* expda-black-linen-background@2x.png in Resources */,
+				77A48062170CC2C600317375 /* expda-gray-linen-background.png in Resources */,
+				77A48063170CC2C600317375 /* expda-gray-linen-background@2x.png in Resources */,
+				77A48064170CC2C600317375 /* expda-launch-background-vignette@2x.png in Resources */,
+				77A48065170CC2C600317375 /* expda-launch-btn.png in Resources */,
+				77A48066170CC2C600317375 /* expda-launch-btn@2x.png in Resources */,
+				77A48067170CC2C600317375 /* expda-launch-divider-and-shadow.png in Resources */,
+				77A48068170CC2C600317375 /* expda-launch-divider-and-shadow@2x.png in Resources */,
+				77A48069170CC2C600317375 /* expda-launch-linen.png in Resources */,
+				77A4806A170CC2C600317375 /* expda-launch-linen@2x.png in Resources */,
+				77A4806B170CC2C600317375 /* Geometric415Medium.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		77A48026170CC1AA00317375 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		77A47FFE170CC1AA00317375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77A48012170CC1AA00317375 /* main.m in Sources */,
+				77A48016170CC1AA00317375 /* KLAppDelegate.m in Sources */,
+				77A48022170CC1AA00317375 /* KLViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77A48023170CC1AA00317375 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77A48037170CC1AA00317375 /* KLScrollSelectDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		77055D7E170CC36000790C8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KLScrollSelect;
+			targetProxy = 77055D7D170CC36000790C8C /* PBXContainerItemProxy */;
+		};
+		77A4802E170CC1AA00317375 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 77A48001170CC1AA00317375 /* KLScrollSelectDemo */;
+			targetProxy = 77A4802D170CC1AA00317375 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		77A4800E170CC1AA00317375 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77A4800F170CC1AA00317375 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		77A4801D170CC1AA00317375 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77A4801E170CC1AA00317375 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		77A48032170CC1AA00317375 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77A48033170CC1AA00317375 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		77A48038170CC1AA00317375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		77A48039170CC1AA00317375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		77A4803B170CC1AA00317375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KLScrollSelectDemo/KLScrollSelectDemo-Prefix.pch";
+				INFOPLIST_FILE = "KLScrollSelectDemo/KLScrollSelectDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		77A4803C170CC1AA00317375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KLScrollSelectDemo/KLScrollSelectDemo-Prefix.pch";
+				INFOPLIST_FILE = "KLScrollSelectDemo/KLScrollSelectDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		77A4803E170CC1AA00317375 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KLScrollSelectDemo.app/KLScrollSelectDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KLScrollSelectDemo/KLScrollSelectDemo-Prefix.pch";
+				INFOPLIST_FILE = "KLScrollSelectDemoTests/KLScrollSelectDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		77A4803F170CC1AA00317375 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KLScrollSelectDemo.app/KLScrollSelectDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KLScrollSelectDemo/KLScrollSelectDemo-Prefix.pch";
+				INFOPLIST_FILE = "KLScrollSelectDemoTests/KLScrollSelectDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77A47FFD170CC1AA00317375 /* Build configuration list for PBXProject "KLScrollSelectDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77A48038170CC1AA00317375 /* Debug */,
+				77A48039170CC1AA00317375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77A4803A170CC1AA00317375 /* Build configuration list for PBXNativeTarget "KLScrollSelectDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77A4803B170CC1AA00317375 /* Debug */,
+				77A4803C170CC1AA00317375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77A4803D170CC1AA00317375 /* Build configuration list for PBXNativeTarget "KLScrollSelectDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77A4803E170CC1AA00317375 /* Debug */,
+				77A4803F170CC1AA00317375 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 77A47FFA170CC1AA00317375 /* Project object */;
+}

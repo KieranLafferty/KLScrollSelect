@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Kbc-cf-gOn">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Eyz-LF-VEK">
+            <objects>
+                <viewController id="Kbc-cf-gOn" customClass="KLViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rdh-6X-5vb">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="expda-launch-background-vignette@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Teq-c2-4o1">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="S6v-e7-61G"/>
+                                    <constraint firstAttribute="width" constant="800" id="ar1-nT-1mw"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsc-br-Ci7" customClass="KLScrollSelect">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Kbc-cf-gOn" id="Jmf-nG-JCr"/>
+                                    <outlet property="delegate" destination="Kbc-cf-gOn" id="QZa-Vq-Nzn"/>
+                                </connections>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="expda-launch-divider-and-shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="iaf-Zp-P8X"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-eI-cKv">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="5Nr-rR-WUR"/>
+                                    <constraint firstAttribute="height" constant="80" id="D23-TT-pw2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                <state key="normal" title="Tweet" backgroundImage="expda-launch-btn.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didSelectTweetButton:" destination="Kbc-cf-gOn" eventType="touchUpInside" id="IhE-Ge-tSM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHo-jo-2FL">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="wyq-TA-5cz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                <state key="normal" title="Facebook" backgroundImage="expda-launch-btn.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didSelectFacebookButton:" destination="Kbc-cf-gOn" eventType="touchUpInside" id="JVA-34-FHw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="KLScrollSelect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5t-x7-TLU">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="0KM-El-jFy"/>
+                                    <constraint firstAttribute="width" constant="261" id="uhx-bq-inu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qsc-br-Ci7" firstAttribute="trailing" secondItem="rdh-6X-5vb" secondAttribute="trailing" type="default" id="1bZ-Zj-gMP"/>
+                            <constraint firstItem="wn6-eI-cKv" firstAttribute="leading" secondItem="rdh-6X-5vb" secondAttribute="leading" constant="6" id="1i9-C0-gQW"/>
+                            <constraint firstItem="tHo-jo-2FL" firstAttribute="top" secondItem="j5t-x7-TLU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6kT-Oo-lCb"/>
+                            <constraint firstItem="j5t-x7-TLU" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" constant="15" id="9eh-nl-BtQ"/>
+                            <constraint firstItem="j5t-x7-TLU" firstAttribute="centerX" secondItem="iaf-Zp-P8X" secondAttribute="centerX" type="default" id="Adp-je-V6g"/>
+                            <constraint firstItem="tHo-jo-2FL" firstAttribute="bottom" secondItem="wn6-eI-cKv" secondAttribute="bottom" type="default" id="LRN-Vx-Rm0"/>
+                            <constraint firstAttribute="bottom" secondItem="qsc-br-Ci7" secondAttribute="bottom" constant="-40" id="Nrg-59-5ED"/>
+                            <constraint firstItem="Teq-c2-4o1" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" type="default" id="On5-s2-Uk9"/>
+                            <constraint firstItem="qsc-br-Ci7" firstAttribute="leading" secondItem="rdh-6X-5vb" secondAttribute="leading" type="default" id="Uik-wt-PRm"/>
+                            <constraint firstItem="iaf-Zp-P8X" firstAttribute="leading" secondItem="rdh-6X-5vb" secondAttribute="leading" type="default" id="Un1-PU-dm3"/>
+                            <constraint firstItem="qsc-br-Ci7" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" constant="150" id="YL3-XE-jWX"/>
+                            <constraint firstItem="wn6-eI-cKv" firstAttribute="top" secondItem="j5t-x7-TLU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ZhF-Bt-MJo"/>
+                            <constraint firstItem="iaf-Zp-P8X" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" constant="148" id="muh-R6-fIw"/>
+                            <constraint firstItem="tHo-jo-2FL" firstAttribute="leading" secondItem="wn6-eI-cKv" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="of2-Vs-9x6"/>
+                            <constraint firstItem="j5t-x7-TLU" firstAttribute="centerX" secondItem="Teq-c2-4o1" secondAttribute="centerX" type="default" id="rUm-O2-rEE"/>
+                            <constraint firstItem="iaf-Zp-P8X" firstAttribute="trailing" secondItem="rdh-6X-5vb" secondAttribute="trailing" type="default" id="uEP-Io-PDt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="facebookButton" destination="tHo-jo-2FL" id="EcY-VF-4VP"/>
+                        <outlet property="scrollSelect" destination="qsc-br-Ci7" id="hC7-qR-Zer"/>
+                        <outlet property="titleLabel" destination="j5t-x7-TLU" id="swt-nt-6ZR"/>
+                        <outlet property="tweetButton" destination="wn6-eI-cKv" id="HY2-ww-08U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5JR-Af-pTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-95" y="-108"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="expda-launch-background-vignette@2x.png" width="1460" height="480"/>
+        <image name="expda-launch-btn.png" width="17" height="89"/>
+        <image name="expda-launch-divider-and-shadow.png" width="39" height="16"/>
+    </resources>
+    <classes>
+        <class className="KLScrollSelect" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KLScrollSelect.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dataSource"/>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="KLViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KLViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didSelectFacebookButton:"/>
+                <relationship kind="action" name="didSelectTweetButton:"/>
+                <relationship kind="outlet" name="facebookButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollSelect" candidateClass="KLScrollSelect"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tweetButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
