@@ -13,12 +13,12 @@
 
 
 @class KLScrollSelectViewController, KLScrollingColumn, KLScrollSelect;
+
 @protocol KLScrollingColumnDelegate <NSObject>
 @optional
-- (void)column:(KLScrollingColumn *)column didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
-- (void) column:(KLScrollingColumn*) column isPanningWithGesture:(UIPanGestureRecognizer*) gesture;
+- (void) willUpdateContentOffsetForColumn: (KLScrollingColumn*) column;
+- (void) didUpdateContentOffsetForColumn: (KLScrollingColumn*) column;
 @end
-
 @protocol KLScrollSelectDelegate <NSObject>
 @optional
 - (void)scrollSelect:(KLScrollSelect *)tableView didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
@@ -28,7 +28,8 @@
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index;
 - (UITableViewCell*) scrollSelect:(KLScrollSelect*) scrollSelect cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 @optional
-- (CGFloat)scrollRateForScrollSelect:(KLScrollSelect *)scrollSelect;
+- (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
+- (CGFloat) scrollRateForColumnAtIndex: (NSInteger) index;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfSectionsInColumnAtIndex:(NSInteger)index;
 // Default is 1 if not implemented
 - (NSInteger)numberOfColumnsInScrollSelect:(KLScrollSelectViewController *)scrollSelect;
@@ -38,18 +39,15 @@
 @property (nonatomic, strong) NSArray* columns;
 @property (nonatomic, strong) IBOutlet id<KLScrollSelectDataSource> dataSource;
 @property (nonatomic, strong) IBOutlet id<KLScrollSelectDelegate> delegate;
-@property (nonatomic) CGFloat scrollRate;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfSectionsInColumnAtIndex:(NSInteger)index;
+- (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
 
 //Actions
 - (UITableViewCell*) cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (NSInteger)numberOfColumnsInScrollSelect:(KLScrollSelect *)scrollSelect;
-
-- (CGFloat)scrollRateForScrollSelect:(KLScrollSelect *)scrollSelect;
-
+- (CGFloat) scrollRateForColumnAtIndex: (NSInteger) index;
 - (KLScrollingColumn*) columnAtIndex:(NSInteger) index;
--(void) setAnimatedColumnAtIndex:(NSInteger) index;
 @end
 
 
@@ -58,12 +56,11 @@
 @end
 
 @interface KLScrollingColumn : UITableView <UIScrollViewDelegate, UITableViewDelegate>
-@property (nonatomic) BOOL shouldAnimate;
-@property (nonatomic) BOOL scrolling;
-@property (nonatomic, strong) NSTimer* timer;
 @property (nonatomic, strong) id<KLScrollingColumnDelegate> columnDelegate;
-//Unit in pixels per second [pixel/second]
-@property (nonatomic) CGFloat scrollRate;     //Measured in pixels per second
+@property (nonatomic) CGFloat offsetDelta;
+@property (nonatomic) CGFloat scrollRate;
+@property (nonatomic) CGFloat offsetAccumulator;
+- (void)resetContentOffsetIfNeeded;
 @end
 
 

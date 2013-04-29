@@ -11,13 +11,13 @@
 #import <objc/runtime.h>
 
 #define TRANSLATED_INDEX_PATH( __INDEXPATH__, __TOTALROWS__ ) [self translatedIndexPath:__INDEXPATH__ forTotalRows:__TOTALROWS__]
+#define ROUND_NEAREST_HALF(__NUM__)
 @implementation KLScrollSelectViewController
 -(void) viewDidLoad {
     [super viewDidLoad];
     self.scrollSelect = [[KLScrollSelect alloc] initWithFrame: self.view.bounds];
     [self.scrollSelect setDataSource: self];
     [self.scrollSelect setDelegate: self];
-    
     [self.view addSubview:self.scrollSelect];
 }
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index {
@@ -31,22 +31,44 @@
 -(void) populateColumns;
 -(NSIndexPath*) translatedIndexPath: (NSIndexPath*) indexPath forTotalRows:(NSInteger) totalRows;
 -(NSInteger) indexOfColumn:(KLScrollingColumn*) column;
-@end
+-(void) synchronizeContentOffsetsWithDriver:(KLScrollingColumn*) drivingColumn;
+-(void) startScrollingDriver;
+-(void) stopScrollingDriver;
 
+
+-(NSArray*) columnsWithoutColumn:(KLScrollingColumn*) column;
+-(void) updateDriverOffset;
+
+
+@property (nonatomic) BOOL shouldResumeAnimating;
+@property (nonatomic,strong) NSArray* passengers;
+@property (nonatomic,strong) KLScrollingColumn* driver;
+@property (nonatomic,strong) KLScrollingColumn* smallestColumn;
+@property (nonatomic, strong) NSTimer* animationTimer;
+
+-(BOOL) animating;
+@end
 @implementation KLScrollSelect
+-(BOOL) animating {
+    return  (BOOL)self.animationTimer;
+}
+-(NSArray*) passengers {
+    return [self columnsWithoutColumn: self.driver];
+}
+-(NSArray*) columnsWithoutColumn:(KLScrollingColumn*) column {
+    return [self.columns filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return evaluatedObject != column;
+    }]];
+}
 -(void) layoutSubviews {
     [super layoutSubviews];
     [self populateColumns];
-    [self setAnimatedColumnAtIndex:0];
+    [self startScrollingDriver];
+    
 }
--(void) setScrollRate:(CGFloat)scrollRate {
-    _scrollRate = scrollRate;
-    for (KLScrollingColumn* column in self.columns) {
-        [column setScrollRate:scrollRate];
-    }
-}
--(NSInteger) indexOfColumn:(KLScrollingColumn*) column {
-    return [self.columns indexOfObject: column];
+
+-(void) synchronizeColumnsForMainDriver {
+    [self synchronizeContentOffsetsWithDriver: self.driver];
 }
 -(void) populateColumns {
     NSInteger numberOfColumns = [self numberOfColumnsInScrollSelect:self];
@@ -59,10 +81,12 @@
         KLScrollingColumn* column = [[KLScrollingColumn alloc] initWithFrame:columnFrame style:UITableViewStylePlain];
         
         [column setDataSource:self];
-        [column setColumnDelegate:self];
-        [column setRowHeight:150.0];
+        [column setRowHeight: [self scrollSelect:self heightForColumnAtIndex:count]];
         [column setSeparatorStyle: UITableViewCellSeparatorStyleNone];
         [column setBackgroundColor:[UIColor clearColor]];
+        [column setColumnDelegate:self];
+        [column setScrollRate: [self.dataSource scrollRateForColumnAtIndex: count]];
+        [column setDelegate:self];
         [columns addObject: column];
         
         if (![[self subviews] containsObject: column]) {
@@ -70,20 +94,128 @@
         }
     }
     self.columns = columns;
-    [self setScrollRate: [self scrollRateForScrollSelect:self]];
+    NSInteger smallestCount = -1;
+    for (KLScrollingColumn* column in self.columns) {
+        NSInteger currentNumRows =  [self tableView:column numberOfRowsInSection:0];
+        if (smallestCount < 0 || currentNumRows < smallestCount) {
+            smallestCount = currentNumRows;
+            self.smallestColumn = column;
+        }
+    }
+    
+}
 
+#pragma mark - Driver & Passenger animation implementation
+-(void) synchronizeContentOffsetsWithDriver:(KLScrollingColumn*) drivingColumn {
+    if (self.driver.offsetDelta == 0)
+        return;
+    for (KLScrollingColumn* currentColumn in self.passengers) {
+        CGPoint currentOffset = currentColumn.contentOffset;
+        CGFloat relativeScrollRate = currentColumn.scrollRate / drivingColumn.scrollRate;
+        currentOffset.y += drivingColumn.offsetDelta* relativeScrollRate;
+        
+        //Only move passenger when offset has accumulated to the min pixel movement threshold (0.5)
+        currentColumn.offsetAccumulator += fabs(drivingColumn.offsetDelta * relativeScrollRate);
+        if (currentColumn.offsetAccumulator >= 0.5) {
+            [currentColumn setContentOffset: currentOffset];
+            currentColumn.offsetAccumulator = 0;
+        }
+    }
+}
+-(void) startScrollingDriver {
+    self.driver = self.columns[0];
+    
+    if (self.animating) {
+        return;
+    }
+    CGFloat animationDuration = 0.5f / self.driver.scrollRate;
+    self.animationTimer = [NSTimer scheduledTimerWithTimeInterval: animationDuration
+                                                           target:self
+                                                         selector:@selector(updateDriverAnimation)
+                                                         userInfo:nil
+                                                          repeats:YES];
+    [self.animationTimer fire];
+}
+-(void) updateDriverAnimation {
+    [self updateDriverOffset];
+}
+-(void) updateDriverOffset {
+    CGFloat pointChange = 0.5;
+    CGPoint newOffset = self.driver.contentOffset;
+    newOffset.y = newOffset.y + pointChange;
+    [self.driver setContentOffset: newOffset];
+}
+
+- (void)stopScrollingDriver {
+    if (!self.animating) {
+        return;
+    }
+    [self.driver.layer removeAllAnimations];
+    [self.animationTimer invalidate];
+    self.animationTimer = nil;
+}
+
+#pragma mark - UIScrollViewDelegate implementation
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    //Stop animating driver
+    [self setDriver: (KLScrollingColumn*) scrollView];
+    [self stopScrollingDriver];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    //Start animating driver
+    [self startScrollingDriver];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        [self startScrollingDriver];
+    }
+}
+
+#pragma  UITableViewDataSource implementation
+//Column data source implementation
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger columnIndex = [self indexOfColumn: (KLScrollingColumn*)tableView];
+    NSInteger numberOfRows = [self scrollSelect:self numberOfRowsInColumnAtIndex: columnIndex] * 3;
+    return numberOfRows;
+}
+
+-(NSInteger) numberOfSectionsInTableView:(KLScrollingColumn *)tableView {
+    return [self scrollSelect:self numberOfSectionsInColumnAtIndex:[self indexOfColumn: tableView]];
+}
+-(UITableViewCell*) tableView:(KLScrollingColumn *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger columnIndex = [self indexOfColumn:tableView];
+    NSIndexPath* translatedIndex = TRANSLATED_INDEX_PATH(indexPath, [self scrollSelect:self
+                                                           numberOfRowsInColumnAtIndex:columnIndex]);
+    return [self cellForRowAtIndexPath: [NSIndexPath indexPathForRow: translatedIndex.row
+                                                           inSection: translatedIndex.section
+                                                            inColumn: columnIndex]];
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger columnIndex = [self indexOfColumn: (KLScrollingColumn*)tableView];
+    NSIndexPath* translatedIndex = TRANSLATED_INDEX_PATH(indexPath, [self scrollSelect: self
+                                                           numberOfRowsInColumnAtIndex: columnIndex]);
+    if ([self.delegate respondsToSelector:@selector(scrollSelect:didSelectCellAtIndexPath:)]) {
+        [self.delegate scrollSelect:self didSelectCellAtIndexPath:[NSIndexPath indexPathForRow: translatedIndex.row
+                                                                                     inSection: translatedIndex.section
+                                                                                      inColumn: columnIndex]];
+    }
+}
+
+#pragma mark - Delegate Implementation
+- (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index {
+    if ([self.dataSource respondsToSelector:@selector(scrollSelect:heightForColumnAtIndex:)]) {
+        return [self.dataSource scrollSelect:self heightForColumnAtIndex:index];
+    }
+    else return 150.0;
 }
 -(NSIndexPath*) translatedIndexPath: (NSIndexPath*) indexPath forTotalRows:(NSInteger) totalRows{
     return [NSIndexPath indexPathForRow: indexPath.row % totalRows
                               inSection: indexPath.section];
 }
--(void) setAnimatedColumnAtIndex:(NSInteger) index {
-    for (KLScrollingColumn* column in self.columns) {
-        NSInteger currentindex = [self indexOfColumn:column];
-        [column setShouldAnimate: currentindex == index];
-    }
-}
-#pragma Datasource implementation
+
+#pragma mark - Datasource Implementation
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index {
     return [self.dataSource scrollSelect: self
              numberOfRowsInColumnAtIndex: index];
@@ -107,56 +239,22 @@
 - (KLScrollingColumn*) columnAtIndex:(NSInteger) index {
     return [self.columns objectAtIndex:index];
 }
-- (CGFloat)scrollRateForScrollSelect:(KLScrollSelect *)scrollSelect {
-    if ([self.dataSource respondsToSelector:@selector(scrollRateForScrollSelect:)]) {
-        return [self.dataSource scrollRateForScrollSelect:self];
+- (CGFloat) scrollRateForColumnAtIndex: (NSInteger) index {
+    if ([self.dataSource respondsToSelector:@selector(scrollRateForColumnAtIndex:)]) {
+        return [self.dataSource scrollRateForColumnAtIndex:index];
     }
     else return 10.0;
 }
-#pragma  UITableViewDataSource implementation
-
-//Column data source implementation
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger columnIndex = [self indexOfColumn: (KLScrollingColumn*)tableView];
-    NSInteger numberOfRows = [self scrollSelect:self numberOfRowsInColumnAtIndex: columnIndex] * 3;
-    
-    return numberOfRows;
+-(NSInteger) indexOfColumn:(KLScrollingColumn*) column {
+    return [self.columns indexOfObject: column];
 }
-
--(NSInteger) numberOfSectionsInTableView:(KLScrollingColumn *)tableView {
-    return [self scrollSelect:self numberOfSectionsInColumnAtIndex:[self indexOfColumn: tableView]];
-}
--(UITableViewCell*) tableView:(KLScrollingColumn *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger columnIndex = [self indexOfColumn:tableView];
-    NSIndexPath* translatedIndex = TRANSLATED_INDEX_PATH(indexPath, [self scrollSelect:self
-                                                           numberOfRowsInColumnAtIndex:columnIndex]);
-    return [self cellForRowAtIndexPath: [NSIndexPath indexPathForRow: translatedIndex.row
-                                                           inSection: translatedIndex.section
-                                                            inColumn: columnIndex]];
-}
-#pragma  UITableViewDelegate implementation
-- (void)column:(KLScrollingColumn *)column didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger columnIndex = [self indexOfColumn:column];
-    NSIndexPath* translatedIndex = TRANSLATED_INDEX_PATH(indexPath, [self scrollSelect: self
-                                                           numberOfRowsInColumnAtIndex: columnIndex]);
-    if ([self.delegate respondsToSelector:@selector(scrollSelect:didSelectCellAtIndexPath:)]) {
-        [self.delegate scrollSelect:self didSelectCellAtIndexPath:[NSIndexPath indexPathForRow: translatedIndex.row
-                                                                                     inSection: translatedIndex.section
-                                                                                      inColumn: columnIndex]];
+- (void) willUpdateContentOffsetForColumn: (KLScrollingColumn*) column {
+    if (column == self.driver) {
     }
-    
 }
-#pragma mark - KLColumnDelegate
-
--(void) column:(KLScrollingColumn*) column isPanningWithGesture:(UIPanGestureRecognizer*) gesture {
-    for (KLScrollingColumn* currentColumn in self.columns) {
-        //Animate all other columns
-        if (currentColumn != column) {
-            CGFloat accelerationFactor = currentColumn.contentSize.height/ column.contentSize.height;
-            CGPoint contentOffset = CGPointMake(currentColumn.contentOffset.x, column.contentOffset.y*accelerationFactor);
-            [currentColumn.layer removeAllAnimations];
-            [currentColumn setContentOffset: contentOffset];
-        }
+- (void) didUpdateContentOffsetForColumn: (KLScrollingColumn*) column {
+    if (column == self.driver) {
+        [self synchronizeColumnsForMainDriver];
     }
 }
 @end
@@ -165,39 +263,36 @@
 @interface KLScrollingColumn()
 {
     int mTotalCellsVisible;
+    BOOL isResettingContent;
     NSInteger _totalRows;
 }
-- (void)resetContentOffsetIfNeeded;
+- (void) resetContentOffsetIfNeeded;
+- (BOOL) didReachBottomBounds;
+- (BOOL) didReachTopBounds;
 @end
 
 @implementation KLScrollingColumn
-
-
-
+- (BOOL) didReachTopBounds {
+    return self.contentOffset.y <= 0.0;
+}
+- (BOOL) didReachBottomBounds {
+    return self.contentOffset.y >= ( self.contentSize.height - self.bounds.size.height);
+}
 - (void)resetContentOffsetIfNeeded
 {
-    
-    NSArray *indexpaths = [self indexPathsForVisibleRows];
-    int totalVisibleCells =[indexpaths count];
-    if( mTotalCellsVisible > totalVisibleCells )
-    {
-        //we dont have enough content to generate scroll
-        return;
-    }
     CGPoint contentOffset  = self.contentOffset;
-    
     //check the top condition
     //check if the scroll view reached its top.. if so.. move it to center.. remember center is the start of the data repeating for 2nd time.
-    if( contentOffset.y<=0.0)
-    {
-        contentOffset.y = self.contentSize.height/3.0f;
+    if ([self didReachTopBounds] || [self didReachBottomBounds]) {
+        isResettingContent = YES;
+        if([self didReachTopBounds])
+            contentOffset.y = self.contentSize.height/3.0f;
+        else if([self didReachBottomBounds] )//scrollview content offset reached bottom minus the height of the tableview
+            //this scenario is same as the data repeating for 2nd time minus the height of the table view
+            contentOffset.y = self.contentSize.height/3.0f - self.bounds.size.height;
+        [self setContentOffset: contentOffset];
+        isResettingContent = NO;
     }
-    else if( contentOffset.y >= ( self.contentSize.height - self.bounds.size.height) )//scrollview content offset reached bottom minus the height of the tableview
-    {
-        //this scenario is same as the data repeating for 2nd time minus the height of the table view
-        contentOffset.y = self.contentSize.height/3.0f- self.bounds.size.height;
-    }
-    [self setContentOffset: contentOffset];
 }
 
 //The heart of this app.
@@ -206,110 +301,29 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     mTotalCellsVisible = self.frame.size.height / self.rowHeight;
     [self resetContentOffsetIfNeeded];
-    [super layoutSubviews];
 }
+
 - (void)willMoveToWindow:(UIWindow *)newWindow {
     [super willMoveToWindow:newWindow];
     [self setShowsHorizontalScrollIndicator:NO];
     [self setShowsVerticalScrollIndicator:NO];
-    
-    [self setDelegate: self];
-    
-    if(newWindow) {
-        [self startScrolling];
-        [self.panGestureRecognizer addTarget:self action:@selector(gestureDidChange:)];
-        [self.pinchGestureRecognizer addTarget:self action:@selector(gestureDidChange:)];
-    }
-    else {
-        [self stopScrolling];
-        [self.panGestureRecognizer removeTarget:self action:@selector(gestureDidChange:)];
-        [self.pinchGestureRecognizer removeTarget:self action:@selector(gestureDidChange:)];
-    }
 }
 
 #pragma mark - Touch methods
-
-- (void)gestureDidChange:(UIGestureRecognizer *)gesture {
-    switch (gesture.state) {
-        case UIGestureRecognizerStateBegan: {
-            if([self scrolling]){
-                [self stopScrolling];
-            }
-            break;
-        }
-            
-        case UIGestureRecognizerStateEnded: {
-            if(![self scrolling] && self.shouldAnimate){
-                [self startScrolling];
-            }
-            break;
-        }
-        default:
-            break;
+-(void) setContentOffset:(CGPoint)contentOffset {
+    
+    if ([self.columnDelegate respondsToSelector:@selector(willUpdateContentOffsetForColumn:)] && !isResettingContent) {
+        [self.columnDelegate willUpdateContentOffsetForColumn:self];
     }
-}
-- (void) setScrollRate:(CGFloat)scrollRate {
-    _scrollRate = scrollRate;
-    [self stopScrolling];
-    [self startScrolling];
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([self.columnDelegate respondsToSelector:@selector(column:isPanningWithGesture:)]) {
-        [self.columnDelegate column:self
-               isPanningWithGesture:self.panGestureRecognizer];
+    if (!isResettingContent) {
+        self.offsetDelta = contentOffset.y - self.contentOffset.y;
     }
-}
-- (BOOL)becomeFirstResponder {
-    [self stopScrolling];
-    return [super becomeFirstResponder];
-}
-#pragma mark - Public methods
-- (void)startScrolling {
-    [self stopScrolling];
-    self.scrolling = YES;
-    CGFloat animationDuration = (0.5f / self.scrollRate);
-    self.timer = [NSTimer scheduledTimerWithTimeInterval: animationDuration
-                                                  target: self
-                                                selector: @selector(updateScroll)
-                                                userInfo: nil
-                                                 repeats: YES];
-}
-- (void)stopScrolling {
-    [self.timer invalidate];
-    self.timer = nil;
-    self.scrolling = NO;
-}
-- (void)updateScroll {
-    CGFloat animationDuration = self.timer.timeInterval;
-    CGFloat pointChange = self.scrollRate * animationDuration;
-    CGPoint newOffset = self.contentOffset;
-    newOffset.y = newOffset.y + pointChange;
-
-    if (!(newOffset.y > (self.contentSize.height - self.bounds.size.height)) && self.shouldAnimate) {
-        
-        [UIView beginAnimations: nil
-                        context: nil];
-        [UIView setAnimationDuration:animationDuration];
-        self.contentOffset = newOffset;
-        [UIView commitAnimations];
-    }
-}
--(void) setShouldAnimate:(BOOL)shouldAnimate {
-    _shouldAnimate = shouldAnimate;
-    if (self.shouldAnimate) {
-        //Start Animation
-        [self startScrolling];
-    }
-    else {
-        //Stop Animation
-        [self stopScrolling];
-    }
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.columnDelegate respondsToSelector:@selector(column:didSelectCellAtIndexPath:)]) {
-        [self.columnDelegate column:self didSelectCellAtIndexPath:indexPath];
+    [super setContentOffset: contentOffset];
+    if ([self.columnDelegate respondsToSelector:@selector(didUpdateContentOffsetForColumn:)] && !isResettingContent) {
+        [self.columnDelegate didUpdateContentOffsetForColumn:self];
     }
 }
 @end
@@ -348,15 +362,18 @@
     [self.image addSubview:self.label];
     
     self.subLabel = [[UILabel alloc] initWithFrame: CGRectMake(self.image.frame.origin.x,
-                                                            self.image.frame.size.height - labelHeight,
-                                                            self.image.frame.size.width,
-                                                            labelHeight)];
+                                                               self.image.frame.size.height - labelHeight,
+                                                               self.image.frame.size.width,
+                                                               labelHeight)];
     
     [self.subLabel setBackgroundColor:[UIColor clearColor]];
     [self.subLabel setTextColor:[UIColor whiteColor]];
     [self.subLabel setTextAlignment:NSTextAlignmentCenter];
     [self.subLabel setFont:[UIFont boldSystemFontOfSize: 15]];
     [self.image addSubview:self.subLabel];
+    
+    [self.layer setShouldRasterize:YES];
+    [self.layer setRasterizationScale: [UIScreen mainScreen].scale];
 }
 
 @end

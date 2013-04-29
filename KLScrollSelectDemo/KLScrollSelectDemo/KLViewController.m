@@ -21,12 +21,12 @@
     
     //Configure data source arrays
     NSString* leftPlistPath = [[NSBundle mainBundle] pathForResource:@"LeftCityList"
-                                                          ofType:@"plist"];
+                                                              ofType:@"plist"];
     self.leftColumnData = [NSArray arrayWithContentsOfFile: leftPlistPath];
     
     
     NSString* rightPlistPath = [[NSBundle mainBundle] pathForResource:@"RightCityList"
-                                                          ofType:@"plist"];
+                                                               ofType:@"plist"];
     self.rightColumnData = [NSArray arrayWithContentsOfFile: rightPlistPath];
     
     
@@ -37,8 +37,9 @@
                                                                                                             topCapHeight:45]forState: UIControlStateNormal];
     [self.titleLabel setFont:[UIFont fontWithName:@"Geometr415 Md BT" size:25]];
 }
-- (CGFloat)scrollRateForScrollSelect:(KLScrollSelect *)scrollSelect {
-    return 7;
+- (CGFloat)scrollRateForColumnAtIndex: (NSInteger) index {
+    
+    return 15 + index * 15;
 }
 -(NSInteger) numberOfColumnsInScrollSelect:(KLScrollSelect *)scrollSelect {
     return 2;
@@ -62,12 +63,15 @@
     NSDictionary* dictForCell = indexPath.column == 0? [self.leftColumnData objectAtIndex:indexPath.row] : [self.rightColumnData objectAtIndex:indexPath.row];
     
     [cell.image setImage:[UIImage imageNamed: [dictForCell objectForKey:@"image"]]];
-//    [cell.label setText:@"Fly to"];
-//    [cell.subLabel setText: [dictForCell objectForKey:@"title"]];
+    //    [cell.label setText:@"Fly to"];
+    //    [cell.subLabel setText: [dictForCell objectForKey:@"title"]];
     return cell;
 }
 - (void)scrollSelect:(KLScrollSelect *)tableView didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Selected cell at index %d, %d, %d", indexPath.column, indexPath.section, indexPath.row);
+}
+- (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index {
+    return 150;
 }
 - (IBAction)didSelectTweetButton:(id)sender {
     SLComposeViewController* shareViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
@@ -93,5 +97,5 @@
                            animated:YES
                          completion: nil];
     }
-
+    
 }@end
