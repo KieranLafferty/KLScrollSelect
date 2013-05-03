@@ -59,6 +59,12 @@ Implement the optional methods for KLScrollSelectDelegate
 	@optional
 	- (void)scrollSelect:(KLScrollSelect *)tableView didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
 
+NSIndexPath Add-on
+Implements a category which adds *column* to NSIndexPath. This allows NSIndexPath to identify which cell in which column as follows:
+	 
+	column: Identifies to column in the KLScrollView
+	section: Identifies the section (As one would expect with UITableView column on NSIndexPath)
+	row: Identifies the row (As one would expect with UITableView row on NSIndexPath)
 
 ## Contact ##
 
