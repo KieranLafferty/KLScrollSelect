@@ -3,19 +3,17 @@
 KLScrollSelect
 =======
 
-A control that infinitely scrolls up and down at variable speeds inspired by Expedia 3.0 app
+A control that infinitely scrolls up and down at variable speeds inspired by Expedia 3.0 app.
 
 Note: KLScrollSelect is intended for use with portrait orientation on iPhone/iPod Touch.
 
+Requires ARC
+
+*Source is dual licensed. Can be used freely without restriction on FREE apps, PAID apps require a license purchased from https://www.cocoacontrols.com/controls/klscrollselect*
+
 [Check out the Demo](http://www.youtube.com/watch?v=uorJfwpTzoI) *Excuse the graphics glitches and lag due to my slow computer.*
 ## Scroll Rate ##
-There are two scroll rates that affect the control
-	
-	1. The comparative scroll rate. This determines how quickly column 1 will scroll with respect to column 2. This is determined by the content height of each column. 
-	If column 1 has a content height of 500 and column 2 has a content height of 250, then column 2 will scroll twice as fast as column 1.
-	
-	2. The overall scroll rate. This speeds/slows the entire table and applies to all of the columns. This can be set by adjsuting the scrollRate property on the KLScrollView instantiation.
-
+The scroll rate property of each column is measured in [pixel/second] and can be set individually for each column. This value should be set via the KLScrollViewDataSource implementation. Defaults to 10 pixel/second if datasource not implemented
 
 
 ## Installation ##
@@ -33,14 +31,13 @@ Add the following line to your podfile
 	
 ## Usage ##
 
-
 Import the header file and declare your controller to subclass KLScrollViewController
 
 	#import <KLScrollSelect/KLScrollSelect.h>
 	@interface KLViewController : KLScrollSelectViewController
 
 
-OR, Import the header file and declare your controller to conform to KLScrollSelectDelegate and KLScrollSelectDelegate
+OR, Import the header file and declare your controller to conform to KLScrollSelectDelegate and KLScrollSelectDataSrouce
 
 	#import <KLScrollSelect/KLScrollSelect.h>
 	@interface KLViewController : UIViewController <KLScrollSelectDataSource, KLScrollSelectDelegate>
@@ -51,15 +48,16 @@ Implement the required methods for KLScrollSelectDataSource
 	- (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index;
 	- (UITableViewCell*) scrollSelect:(KLScrollSelect*) scrollSelect cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 	@optional
-	- (CGFloat)scrollRateForScrollSelect:(KLScrollSelect *)scrollSelect;
+	- (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
+	- (CGFloat) scrollRateForColumnAtIndex: (NSInteger) index;
 	- (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfSectionsInColumnAtIndex:(NSInteger)index;
 	// Default is 1 if not implemented
 	- (NSInteger)numberOfColumnsInScrollSelect:(KLScrollSelectViewController *)scrollSelect;
 	
 Implement the optional methods for KLScrollSelectDelegate
 
+	@optional
 	- (void)scrollSelect:(KLScrollSelect *)tableView didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
-	
 
 
 ## Contact ##
