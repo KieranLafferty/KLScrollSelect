@@ -12,6 +12,7 @@
 
 @end
 
+#define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 @implementation KLViewController
 -(void) viewDidLoad {
     [super viewDidLoad];
@@ -54,9 +55,19 @@
 }
 - (UITableViewCell*) scrollSelect:(KLScrollSelect*) scrollSelect cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KLScrollingColumn* column = [[scrollSelect columns] objectAtIndex: indexPath.column];
+    KLImageCell* cell;
     
-    [column registerClass:[KLImageCell class] forCellReuseIdentifier:@"Cell" ];
-    KLImageCell* cell = [column dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    //registerClass only works on iOS 6 so if the app runs on iOS 5 we shouldn't use this method.
+    //On iOS 5 we only initialize a new KLImageCell if the cell is nil
+    if (IOS_VERSION >= 6.0) {
+        [column registerClass:[KLImageCell class] forCellReuseIdentifier:@"Cell" ];
+        cell = [column dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    } else {
+        cell = [column dequeueReusableCellWithIdentifier:@"Cell"];
+        if (cell == nil) {
+            cell = [[KLImageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        }
+    }
     
     [cell setSelectionStyle: UITableViewCellSelectionStyleNone];
     
