@@ -332,48 +332,52 @@
 
 -(void) willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
-    self.backgroundColor = [UIColor clearColor];
-    self.image = [[UIImageView alloc] initWithFrame: CGRectMake( kDefaultCellImageEdgeInset.left,
-                                                                kDefaultCellImageEdgeInset.top,
-                                                                self.frame.size.width - (kDefaultCellImageEdgeInset.left + kDefaultCellImageEdgeInset.right),
-                                                                self.frame.size.height - (kDefaultCellImageEdgeInset.top + kDefaultCellImageEdgeInset.bottom))];
-    [self.image.layer setBorderWidth: 1.0];
-    [self.image.layer setBorderColor: [UIColor colorWithRed: 1
-                                                      green: 1
-                                                       blue: 1
-                                                      alpha: 0.4].CGColor];
-    [self.image.layer setCornerRadius:6.0];
-    
-    [self.image setClipsToBounds:YES];
-    
-    [self addSubview: self.image];
-    
-    CGFloat labelHeight = 20;
-    
-    self.label = [[UILabel alloc] initWithFrame: CGRectMake(self.image.frame.origin.x,
-                                                            self.image.frame.size.height - labelHeight*2,
-                                                            self.image.frame.size.width,
-                                                            labelHeight)];
-    
-    [self.label setBackgroundColor:[UIColor clearColor]];
-    [self.label setTextColor:[UIColor whiteColor]];
-    [self.label setTextAlignment:NSTextAlignmentCenter];
-    [self.label setFont:[UIFont systemFontOfSize: 15]];
-    [self.image addSubview:self.label];
-    
-    self.subLabel = [[UILabel alloc] initWithFrame: CGRectMake(self.image.frame.origin.x,
-                                                               self.image.frame.size.height - labelHeight,
-                                                               self.image.frame.size.width,
-                                                               labelHeight)];
-    
-    [self.subLabel setBackgroundColor:[UIColor clearColor]];
-    [self.subLabel setTextColor:[UIColor whiteColor]];
-    [self.subLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.subLabel setFont:[UIFont boldSystemFontOfSize: 15]];
-    [self.image addSubview:self.subLabel];
-    
-    [self.layer setShouldRasterize:YES];
-    [self.layer setRasterizationScale: [UIScreen mainScreen].scale];
+    // On iOS 5 willMoveToSuperview method always gets called, so by checking existence of self.image ,
+    // we prevent imageView initialization of reused cells otherwise we face with low performance while scrolling
+    if (self.image == nil) {
+        self.backgroundColor = [UIColor clearColor];
+        self.image = [[UIImageView alloc] initWithFrame: CGRectMake( kDefaultCellImageEdgeInset.left,
+                                                                    kDefaultCellImageEdgeInset.top,
+                                                                    self.frame.size.width - (kDefaultCellImageEdgeInset.left + kDefaultCellImageEdgeInset.right),
+                                                                    self.frame.size.height - (kDefaultCellImageEdgeInset.top + kDefaultCellImageEdgeInset.bottom))];
+        [self.image.layer setBorderWidth: 1.0];
+        [self.image.layer setBorderColor: [UIColor colorWithRed: 1
+                                                          green: 1
+                                                           blue: 1
+                                                          alpha: 0.4].CGColor];
+        [self.image.layer setCornerRadius:6.0];
+        
+        [self.image setClipsToBounds:YES];
+        
+        [self addSubview: self.image];
+        
+        CGFloat labelHeight = 20;
+        
+        self.label = [[UILabel alloc] initWithFrame: CGRectMake(self.image.frame.origin.x,
+                                                                self.image.frame.size.height - labelHeight*2,
+                                                                self.image.frame.size.width,
+                                                                labelHeight)];
+        
+        [self.label setBackgroundColor:[UIColor clearColor]];
+        [self.label setTextColor:[UIColor whiteColor]];
+        [self.label setTextAlignment:NSTextAlignmentCenter];
+        [self.label setFont:[UIFont systemFontOfSize: 15]];
+        [self.image addSubview:self.label];
+        
+        self.subLabel = [[UILabel alloc] initWithFrame: CGRectMake(self.image.frame.origin.x,
+                                                                   self.image.frame.size.height - labelHeight,
+                                                                   self.image.frame.size.width,
+                                                                   labelHeight)];
+        
+        [self.subLabel setBackgroundColor:[UIColor clearColor]];
+        [self.subLabel setTextColor:[UIColor whiteColor]];
+        [self.subLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.subLabel setFont:[UIFont boldSystemFontOfSize: 15]];
+        [self.image addSubview:self.subLabel];
+        
+        [self.layer setShouldRasterize:YES];
+        [self.layer setRasterizationScale: [UIScreen mainScreen].scale];
+    }
 }
 
 @end
