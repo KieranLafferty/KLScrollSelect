@@ -16,8 +16,13 @@
 @implementation KLViewController
 -(void) viewDidLoad {
     [super viewDidLoad];
+    self.scrollSelect = [[KLScrollSelect alloc] initWithFrame: CGRectMake(0, 150, 320, 438)];
+    [self.scrollSelect setDataSource: self];
+    [self.scrollSelect setDelegate: self];
     
     [self.scrollSelect setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview: self.scrollSelect];
+    
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"expda-launch-linen.png"]]];
     
     //Configure data source arrays
