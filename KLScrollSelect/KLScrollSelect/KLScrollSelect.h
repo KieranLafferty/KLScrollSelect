@@ -37,8 +37,8 @@
 
 @interface KLScrollSelect : UIView <UITableViewDelegate, UITableViewDataSource, KLScrollingColumnDelegate>
 @property (nonatomic, strong) NSArray* columns;
-@property (nonatomic, strong) IBOutlet id<KLScrollSelectDataSource> dataSource;
-@property (nonatomic, strong) IBOutlet id<KLScrollSelectDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<KLScrollSelectDataSource> dataSource;
+@property (nonatomic, weak) IBOutlet id<KLScrollSelectDelegate> delegate;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfSectionsInColumnAtIndex:(NSInteger)index;
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
@@ -56,7 +56,7 @@
 @end
 
 @interface KLScrollingColumn : UITableView <UIScrollViewDelegate, UITableViewDelegate>
-@property (nonatomic, strong) id<KLScrollingColumnDelegate> columnDelegate;
+@property (nonatomic, weak) id<KLScrollingColumnDelegate> columnDelegate;
 @property (nonatomic) CGFloat offsetDelta;
 @property (nonatomic) CGFloat scrollRate;
 @property (nonatomic) CGFloat offsetAccumulator;
