@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Kbc-cf-gOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Kbc-cf-gOn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -18,13 +18,6 @@
                                     <constraint firstAttribute="width" constant="800" id="ar1-nT-1mw"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsc-br-Ci7" customClass="KLScrollSelect">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Kbc-cf-gOn" id="Jmf-nG-JCr"/>
-                                    <outlet property="delegate" destination="Kbc-cf-gOn" id="QZa-Vq-Nzn"/>
-                                </connections>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="expda-launch-divider-and-shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="iaf-Zp-P8X"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-eI-cKv">
                                 <constraints>
@@ -71,17 +64,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qsc-br-Ci7" firstAttribute="trailing" secondItem="rdh-6X-5vb" secondAttribute="trailing" type="default" id="1bZ-Zj-gMP"/>
                             <constraint firstItem="wn6-eI-cKv" firstAttribute="leading" secondItem="rdh-6X-5vb" secondAttribute="leading" constant="6" id="1i9-C0-gQW"/>
                             <constraint firstItem="tHo-jo-2FL" firstAttribute="top" secondItem="j5t-x7-TLU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6kT-Oo-lCb"/>
                             <constraint firstItem="j5t-x7-TLU" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" constant="15" id="9eh-nl-BtQ"/>
                             <constraint firstItem="j5t-x7-TLU" firstAttribute="centerX" secondItem="iaf-Zp-P8X" secondAttribute="centerX" type="default" id="Adp-je-V6g"/>
                             <constraint firstItem="tHo-jo-2FL" firstAttribute="bottom" secondItem="wn6-eI-cKv" secondAttribute="bottom" type="default" id="LRN-Vx-Rm0"/>
-                            <constraint firstAttribute="bottom" secondItem="qsc-br-Ci7" secondAttribute="bottom" constant="-40" id="Nrg-59-5ED"/>
                             <constraint firstItem="Teq-c2-4o1" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" type="default" id="On5-s2-Uk9"/>
-                            <constraint firstItem="qsc-br-Ci7" firstAttribute="leading" secondItem="rdh-6X-5vb" secondAttribute="leading" type="default" id="Uik-wt-PRm"/>
                             <constraint firstItem="iaf-Zp-P8X" firstAttribute="leading" secondItem="rdh-6X-5vb" secondAttribute="leading" type="default" id="Un1-PU-dm3"/>
-                            <constraint firstItem="qsc-br-Ci7" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" constant="150" id="YL3-XE-jWX"/>
                             <constraint firstItem="wn6-eI-cKv" firstAttribute="top" secondItem="j5t-x7-TLU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ZhF-Bt-MJo"/>
                             <constraint firstItem="iaf-Zp-P8X" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" constant="148" id="muh-R6-fIw"/>
                             <constraint firstItem="tHo-jo-2FL" firstAttribute="leading" secondItem="wn6-eI-cKv" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="of2-Vs-9x6"/>
@@ -91,7 +80,6 @@
                     </view>
                     <connections>
                         <outlet property="facebookButton" destination="tHo-jo-2FL" id="EcY-VF-4VP"/>
-                        <outlet property="scrollSelect" destination="qsc-br-Ci7" id="hC7-qR-Zer"/>
                         <outlet property="titleLabel" destination="j5t-x7-TLU" id="swt-nt-6ZR"/>
                         <outlet property="tweetButton" destination="wn6-eI-cKv" id="HY2-ww-08U"/>
                     </connections>
