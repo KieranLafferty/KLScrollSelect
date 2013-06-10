@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Kbc-cf-gOn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Kbc-cf-gOn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -12,18 +12,14 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="expda-launch-background-vignette@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="Teq-c2-4o1">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="S6v-e7-61G"/>
-                                    <constraint firstAttribute="width" constant="800" id="ar1-nT-1mw"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="expda-launch-background-vignette@2x.png" id="Teq-c2-4o1">
+                                <rect key="frame" x="-240" y="0.0" width="800" height="150"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="expda-launch-divider-and-shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="iaf-Zp-P8X"/>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-eI-cKv">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="5Nr-rR-WUR"/>
-                                    <constraint firstAttribute="height" constant="80" id="D23-TT-pw2"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="expda-launch-divider-and-shadow.png" id="iaf-Zp-P8X">
+                                <rect key="frame" x="0.0" y="148" width="320" height="16"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wn6-eI-cKv">
+                                <rect key="frame" x="6" y="57" width="150" height="80"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
                                 <state key="normal" title="Tweet" backgroundImage="expda-launch-btn.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -36,10 +32,8 @@
                                     <action selector="didSelectTweetButton:" destination="Kbc-cf-gOn" eventType="touchUpInside" id="IhE-Ge-tSM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHo-jo-2FL">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="wyq-TA-5cz"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tHo-jo-2FL">
+                                <rect key="frame" x="164" y="57" width="150" height="80"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
                                 <state key="normal" title="Facebook" backgroundImage="expda-launch-btn.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,31 +46,14 @@
                                     <action selector="didSelectFacebookButton:" destination="Kbc-cf-gOn" eventType="touchUpInside" id="JVA-34-FHw"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="KLScrollSelect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5t-x7-TLU">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="0KM-El-jFy"/>
-                                    <constraint firstAttribute="width" constant="261" id="uhx-bq-inu"/>
-                                </constraints>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="KLScrollSelect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j5t-x7-TLU">
+                                <rect key="frame" x="30" y="15" width="261" height="34"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="wn6-eI-cKv" firstAttribute="leading" secondItem="rdh-6X-5vb" secondAttribute="leading" constant="6" id="1i9-C0-gQW"/>
-                            <constraint firstItem="tHo-jo-2FL" firstAttribute="top" secondItem="j5t-x7-TLU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="6kT-Oo-lCb"/>
-                            <constraint firstItem="j5t-x7-TLU" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" constant="15" id="9eh-nl-BtQ"/>
-                            <constraint firstItem="j5t-x7-TLU" firstAttribute="centerX" secondItem="iaf-Zp-P8X" secondAttribute="centerX" type="default" id="Adp-je-V6g"/>
-                            <constraint firstItem="tHo-jo-2FL" firstAttribute="bottom" secondItem="wn6-eI-cKv" secondAttribute="bottom" type="default" id="LRN-Vx-Rm0"/>
-                            <constraint firstItem="Teq-c2-4o1" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" type="default" id="On5-s2-Uk9"/>
-                            <constraint firstItem="iaf-Zp-P8X" firstAttribute="leading" secondItem="rdh-6X-5vb" secondAttribute="leading" type="default" id="Un1-PU-dm3"/>
-                            <constraint firstItem="wn6-eI-cKv" firstAttribute="top" secondItem="j5t-x7-TLU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ZhF-Bt-MJo"/>
-                            <constraint firstItem="iaf-Zp-P8X" firstAttribute="top" secondItem="rdh-6X-5vb" secondAttribute="top" constant="148" id="muh-R6-fIw"/>
-                            <constraint firstItem="tHo-jo-2FL" firstAttribute="leading" secondItem="wn6-eI-cKv" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="of2-Vs-9x6"/>
-                            <constraint firstItem="j5t-x7-TLU" firstAttribute="centerX" secondItem="Teq-c2-4o1" secondAttribute="centerX" type="default" id="rUm-O2-rEE"/>
-                            <constraint firstItem="iaf-Zp-P8X" firstAttribute="trailing" secondItem="rdh-6X-5vb" secondAttribute="trailing" type="default" id="uEP-Io-PDt"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="facebookButton" destination="tHo-jo-2FL" id="EcY-VF-4VP"/>
@@ -112,9 +89,6 @@
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tweetButton" candidateClass="UIButton"/>
             </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
