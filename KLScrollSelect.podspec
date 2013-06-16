@@ -3,7 +3,6 @@ Pod::Spec.new do |s|
   s.name         	= "KLScrollSelect"
   s.version      	= "0.0.1"
   s.summary      	= "A control that infinitely scrolls up and down at variable speeds inspired by Expedia 3.0 app."
-  s.description		= "Infinitely scrolls up and down faster/slower depending on cell count per column."
   s.homepage     	= "https://github.com/KieranLafferty/KLScrollSelect"
   s.license      	= 'Apache 2.0 License'
   s.author       	= { "Kieran Lafferty" => "kieran.lafferty@gmail.com" }
