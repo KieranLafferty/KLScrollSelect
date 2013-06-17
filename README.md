@@ -33,7 +33,7 @@ The scroll rate property of each column is measured in [pixel/second] and can be
 Via CocoaPods
 Add the following line to your podfile
 
-	pod 'KLScrollSelect', :git=>'git://github.com/KieranLafferty/KLScrollSelect.git'
+	pod 'KLScrollSelect'
 	
 ## Usage ##
 
