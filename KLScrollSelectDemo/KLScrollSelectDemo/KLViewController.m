@@ -58,7 +58,7 @@
     //Right Column
     else return self.rightColumnData.count;
 }
-- (UITableViewCell*) scrollSelect:(KLScrollSelect*) scrollSelect cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*) scrollSelect:(KLScrollSelect*) scrollSelect cellForRowAtIndexPath:(KLIndexPath *)indexPath {
     KLScrollingColumn* column = [[scrollSelect columns] objectAtIndex: indexPath.column];
     KLImageCell* cell;
     
@@ -66,7 +66,7 @@
     //On iOS 5 we only initialize a new KLImageCell if the cell is nil
     if (IOS_VERSION >= 6.0) {
         [column registerClass:[KLImageCell class] forCellReuseIdentifier:@"Cell" ];
-        cell = [column dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        cell = [column dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:[indexPath innerIndexPath]];
     } else {
         cell = [column dequeueReusableCellWithIdentifier:@"Cell"];
         if (cell == nil) {
@@ -83,8 +83,8 @@
     //    [cell.subLabel setText: [dictForCell objectForKey:@"title"]];
     return cell;
 }
-- (void)scrollSelect:(KLScrollSelect *)tableView didSelectCellAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Selected cell at index %d, %d, %d", indexPath.column, indexPath.section, indexPath.row);
+- (void)scrollSelect:(KLScrollSelect *)tableView didSelectCellAtIndexPath:(KLIndexPath *)indexPath {
+    NSLog(@"Selected cell at index %ld, %ld, %ld", (long)indexPath.column, (long)indexPath.section, (long)indexPath.row);
 }
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index {
     return 150;

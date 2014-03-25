@@ -188,16 +188,16 @@
     NSInteger columnIndex = [self indexOfColumn:tableView];
     NSIndexPath* translatedIndex = TRANSLATED_INDEX_PATH(indexPath, [self scrollSelect:self
                                                            numberOfRowsInColumnAtIndex:columnIndex]);
-    return [self cellForRowAtIndexPath: [NSIndexPath indexPathForRow: translatedIndex.row
-                                                           inSection: translatedIndex.section
-                                                            inColumn: columnIndex]];
+
+    return [self cellForRowAtIndexPath:translatedIndex withColumn:columnIndex];
+
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger columnIndex = [self indexOfColumn: (KLScrollingColumn*)tableView];
     NSIndexPath* translatedIndex = TRANSLATED_INDEX_PATH(indexPath, [self scrollSelect: self
                                                            numberOfRowsInColumnAtIndex: columnIndex]);
     if ([self.delegate respondsToSelector:@selector(scrollSelect:didSelectCellAtIndexPath:)]) {
-        [self.delegate scrollSelect:self didSelectCellAtIndexPath:[NSIndexPath indexPathForRow: translatedIndex.row
+        [self.delegate scrollSelect:self didSelectCellAtIndexPath:[KLIndexPath indexPathForRow: translatedIndex.row
                                                                                      inSection: translatedIndex.section
                                                                                       inColumn: columnIndex]];
     }
@@ -233,8 +233,12 @@
     }
     else return 1;
 }
-- (UITableViewCell*) cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.dataSource scrollSelect:self cellForRowAtIndexPath:indexPath];
+- (UITableViewCell*) cellForRowAtIndexPath:(NSIndexPath *)indexPath withColumn:(NSInteger)theColumn {
+
+    KLIndexPath *kl_indexPath = (KLIndexPath *)[KLIndexPath indexPathForRow:indexPath.row inSection:indexPath.section inColumn:theColumn];
+    
+    return [self.dataSource scrollSelect:self cellForRowAtIndexPath:kl_indexPath];
+
 }
 - (KLScrollingColumn*) columnAtIndex:(NSInteger) index {
     return [self.columns objectAtIndex:index];
@@ -382,20 +386,46 @@
 
 @end
 
-NSString const *kColumnObjectKey = @"columnKey";
-@implementation NSIndexPath (Column)
+@interface KLIndexPath()
+@property (nonatomic,strong ) NSIndexPath *innerIndexPath;
+@end
 
-+ (NSIndexPath *)indexPathForRow:(NSInteger) row
-                       inSection:(NSInteger) section
-                        inColumn:(NSInteger) column {
-    NSIndexPath* index = [NSIndexPath indexPathForRow:row inSection:section];
-    objc_setAssociatedObject(index, &kColumnObjectKey, @(column), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    return index;
+@implementation KLIndexPath
+
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        _innerIndexPath = nil;
+    }
+    return self;
 }
--(NSInteger) column {
-    id object = objc_getAssociatedObject(self, &kColumnObjectKey);
-    return [object integerValue];
+
++ (KLIndexPath *)indexPathForRow:(NSInteger) row
+                       inSection:(NSInteger) section
+                        inColumn:(NSInteger) column
+{
+    
+    KLIndexPath *retVal = [[self alloc] init];
+    retVal->_innerIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
+    retVal->_column = column;
+    return retVal;
+}
+
+-(NSIndexPath *)innerIndexPath
+{
+    return self->_innerIndexPath;
+}
+
+-(NSInteger)  section
+{
+    return self->_innerIndexPath.section;
+}
+-(NSInteger)  row
+{
+    return self->_innerIndexPath.row;
 }
 
 @end
