@@ -12,7 +12,7 @@
 #define kDefaultCellImageEdgeInset UIEdgeInsetsMake(5, 5, 5, 5)
 
 
-@class KLScrollSelectViewController, KLScrollingColumn, KLScrollSelect;
+@class KLScrollSelectViewController, KLScrollingColumn, KLScrollSelect,KLIndexPath;
 
 @protocol KLScrollingColumnDelegate <NSObject>
 @optional
@@ -26,7 +26,7 @@
 @protocol KLScrollSelectDataSource <NSObject>
 @required
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index;
-- (UITableViewCell*) scrollSelect:(KLScrollSelect*) scrollSelect cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell*) scrollSelect:(KLScrollSelect*) scrollSelect cellForRowAtIndexPath:(KLIndexPath *)indexPath;
 @optional
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
 - (CGFloat) scrollRateForColumnAtIndex: (NSInteger) index;
@@ -44,7 +44,7 @@
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
 
 //Actions
-- (UITableViewCell*) cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell*) cellForRowAtIndexPath:(NSIndexPath *)indexPath withColumn:(NSInteger)theColumn;
 - (NSInteger)numberOfColumnsInScrollSelect:(KLScrollSelect *)scrollSelect;
 - (CGFloat) scrollRateForColumnAtIndex: (NSInteger) index;
 - (KLScrollingColumn*) columnAtIndex:(NSInteger) index;
@@ -70,11 +70,14 @@
 @property (nonatomic, strong) UILabel* subLabel;
 @end
 
-@interface NSIndexPath (Column)
+@interface KLIndexPath : NSObject
 + (NSIndexPath *)indexPathForRow:(NSInteger) row
                        inSection:(NSInteger) section
                         inColumn:(NSInteger) column;
 
 @property(nonatomic, readonly) NSInteger column;
+@property(nonatomic,readonly) NSInteger section;
+@property(nonatomic,readonly) NSInteger row;
 
+-(NSIndexPath *)innerIndexPath;
 @end
