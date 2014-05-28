@@ -49,7 +49,16 @@
 -(BOOL) animating;
 @end
 @implementation KLScrollSelect
-@synthesize autoScrollEnabled;
+
+- (id)initWithFrame:(CGRect)frameRect
+{
+    if (!(self = [super initWithFrame:frameRect]))
+        return nil;
+    
+    self.autoScrollEnabled = true; //Auto scroll by default
+    
+    return self;
+}
 
 -(BOOL) animating {
     return  (BOOL)self.animationTimer;
