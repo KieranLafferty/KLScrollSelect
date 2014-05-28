@@ -49,6 +49,17 @@
 -(BOOL) animating;
 @end
 @implementation KLScrollSelect
+
+- (id)initWithFrame:(CGRect)frameRect
+{
+    if (!(self = [super initWithFrame:frameRect]))
+        return nil;
+    
+    self.autoScrollEnabled = true; //Auto scroll by default
+    
+    return self;
+}
+
 -(BOOL) animating {
     return  (BOOL)self.animationTimer;
 }
@@ -63,14 +74,20 @@
 -(void) layoutSubviews {
     [super layoutSubviews];
     [self populateColumns];
-    [self startScrollingDriver];
-    
+    if (self.autoScrollEnabled) {
+        [self startScrollingDriver];
+    }
 }
 
 -(void) synchronizeColumnsForMainDriver {
     [self synchronizeContentOffsetsWithDriver: self.driver];
 }
 -(void) populateColumns {
+    
+    for(KLScrollingColumn *column in self.columns){
+        [column removeFromSuperview];
+    }
+    
     NSInteger numberOfColumns = [self numberOfColumnsInScrollSelect:self];
     NSMutableArray* columns = [[NSMutableArray alloc] initWithCapacity:numberOfColumns];
     CGFloat columnWidth = self.frame.size.width/[self numberOfColumnsInScrollSelect:self];
@@ -159,16 +176,20 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     //Stop animating driver
     [self setDriver: (KLScrollingColumn*) scrollView];
-    [self stopScrollingDriver];
+    if (self.autoScrollEnabled) {
+        [self stopScrollingDriver];
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     //Start animating driver
-    [self startScrollingDriver];
+    if (self.autoScrollEnabled) {
+        [self startScrollingDriver];
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (!decelerate) {
+    if (!decelerate && self.autoScrollEnabled) {
         [self startScrollingDriver];
     }
 }
