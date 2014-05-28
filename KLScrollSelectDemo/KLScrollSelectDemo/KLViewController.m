@@ -19,6 +19,7 @@
     self.scrollSelect = [[KLScrollSelect alloc] initWithFrame: CGRectMake(0, 150, 320, 438)];
     [self.scrollSelect setDataSource: self];
     [self.scrollSelect setDelegate: self];
+    [self.scrollSelect setAutoScrollEnabled:NO];
     
     [self.scrollSelect setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview: self.scrollSelect];

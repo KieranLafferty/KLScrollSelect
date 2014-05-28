@@ -49,6 +49,8 @@
 -(BOOL) animating;
 @end
 @implementation KLScrollSelect
+@synthesize autoScrollEnabled;
+
 -(BOOL) animating {
     return  (BOOL)self.animationTimer;
 }
@@ -63,8 +65,9 @@
 -(void) layoutSubviews {
     [super layoutSubviews];
     [self populateColumns];
-    [self startScrollingDriver];
-    
+    if (self.autoScrollEnabled) {
+        [self startScrollingDriver];
+    }
 }
 
 -(void) synchronizeColumnsForMainDriver {
@@ -164,16 +167,20 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     //Stop animating driver
     [self setDriver: (KLScrollingColumn*) scrollView];
-    [self stopScrollingDriver];
+    if (self.autoScrollEnabled) {
+        [self stopScrollingDriver];
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     //Start animating driver
-    [self startScrollingDriver];
+    if (self.autoScrollEnabled) {
+        [self startScrollingDriver];
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (!decelerate) {
+    if (!decelerate && self.autoScrollEnabled) {
         [self startScrollingDriver];
     }
 }

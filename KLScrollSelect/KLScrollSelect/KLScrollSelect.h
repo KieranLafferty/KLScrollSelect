@@ -39,6 +39,7 @@
 @property (nonatomic, strong) NSArray* columns;
 @property (nonatomic, weak) IBOutlet id<KLScrollSelectDataSource> dataSource;
 @property (nonatomic, weak) IBOutlet id<KLScrollSelectDelegate> delegate;
+@property (nonatomic, assign) BOOL autoScrollEnabled;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfSectionsInColumnAtIndex:(NSInteger)index;
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
