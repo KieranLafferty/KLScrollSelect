@@ -29,6 +29,7 @@
 - (UITableViewCell*) scrollSelect:(KLScrollSelect*) scrollSelect cellForRowAtIndexPath:(KLIndexPath *)indexPath;
 @optional
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
+- (CGFloat) columnWidthAtIndex: (NSInteger) index;
 - (CGFloat) scrollRateForColumnAtIndex: (NSInteger) index;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfSectionsInColumnAtIndex:(NSInteger)index;
 // Default is 1 if not implemented
@@ -42,7 +43,7 @@
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfRowsInColumnAtIndex:(NSInteger)index;
 - (NSInteger)scrollSelect:(KLScrollSelect *)scrollSelect numberOfSectionsInColumnAtIndex:(NSInteger)index;
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index;
-
+-(void)start;
 //Actions
 - (UITableViewCell*) cellForRowAtIndexPath:(NSIndexPath *)indexPath withColumn:(NSInteger)theColumn;
 - (NSInteger)numberOfColumnsInScrollSelect:(KLScrollSelect *)scrollSelect;

@@ -60,11 +60,14 @@
         return evaluatedObject != column;
     }]];
 }
--(void) layoutSubviews {
-    [super layoutSubviews];
+
+-(void)start
+{
     [self populateColumns];
     [self startScrollingDriver];
-    
+}
+-(void) layoutSubviews {
+    [super layoutSubviews];
 }
 
 -(void) synchronizeColumnsForMainDriver {
@@ -73,11 +76,16 @@
 -(void) populateColumns {
     NSInteger numberOfColumns = [self numberOfColumnsInScrollSelect:self];
     NSMutableArray* columns = [[NSMutableArray alloc] initWithCapacity:numberOfColumns];
-    CGFloat columnWidth = self.frame.size.width/[self numberOfColumnsInScrollSelect:self];
     
     for (NSInteger count = 0; count < numberOfColumns;  count++) {
+        CGFloat previousColumnWidth;
+        if (columns.count)
+            previousColumnWidth = [[columns lastObject] frame].origin.x + [[columns lastObject] frame].size.width;
+        else
+            previousColumnWidth = 0;
+        CGFloat columnWidth = ([self.dataSource respondsToSelector:@selector(columnWidthAtIndex:)])? [self.dataSource columnWidthAtIndex:count] : (self.frame.size.width / [self numberOfColumnsInScrollSelect:self]);
         //Make the frame the entire height and the width the width of the superview divided by number of columns
-        CGRect columnFrame = CGRectMake(columnWidth * count, 0, columnWidth, self.frame.size.height);
+        CGRect columnFrame = CGRectMake(previousColumnWidth, 0, columnWidth, self.frame.size.height);
         KLScrollingColumn* column = [[KLScrollingColumn alloc] initWithFrame:columnFrame style:UITableViewStylePlain];
         
         [column setDataSource:self];
@@ -344,6 +352,7 @@
                                                                     kDefaultCellImageEdgeInset.top,
                                                                     self.frame.size.width - (kDefaultCellImageEdgeInset.left + kDefaultCellImageEdgeInset.right),
                                                                     self.frame.size.height - (kDefaultCellImageEdgeInset.top + kDefaultCellImageEdgeInset.bottom))];
+        [self.image setContentMode:UIViewContentModeScaleAspectFill];
         [self.image.layer setBorderWidth: 1.0];
         [self.image.layer setBorderColor: [UIColor colorWithRed: 1
                                                           green: 1
@@ -383,7 +392,17 @@
         [self.layer setRasterizationScale: [UIScreen mainScreen].scale];
     }
 }
-
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    CGRect newFrame = CGRectMake( kDefaultCellImageEdgeInset.left,
+                                kDefaultCellImageEdgeInset.top,
+                                self.frame.size.width - (kDefaultCellImageEdgeInset.left + kDefaultCellImageEdgeInset.right),
+                                self.frame.size.height - (kDefaultCellImageEdgeInset.top + kDefaultCellImageEdgeInset.bottom));
+    if (! CGRectEqualToRect(self.image.frame, newFrame)) {
+        self.image.frame = newFrame;
+    }
+}
 @end
 
 @interface KLIndexPath()
