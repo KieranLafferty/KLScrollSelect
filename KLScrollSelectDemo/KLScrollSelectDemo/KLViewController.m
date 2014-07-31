@@ -9,16 +9,22 @@
 #import "KLViewController.h"
 #import <Social/Social.h>
 @interface KLViewController ()
-
+{
+    CGFloat leftColumnWidth;
+    BOOL showingBothColumns;
+}
 @end
 
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 @implementation KLViewController
 -(void) viewDidLoad {
     [super viewDidLoad];
+    leftColumnWidth = self.view.frame.size.width / 2;
+    showingBothColumns = YES;
     self.scrollSelect = [[KLScrollSelect alloc] initWithFrame: CGRectMake(0, 150, 320, 438)];
     [self.scrollSelect setDataSource: self];
     [self.scrollSelect setDelegate: self];
+    [self.scrollSelect start];
     
     [self.scrollSelect setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview: self.scrollSelect];
@@ -44,7 +50,6 @@
     [self.titleLabel setFont:[UIFont fontWithName:@"Geometr415 Md BT" size:25]];
 }
 - (CGFloat)scrollRateForColumnAtIndex: (NSInteger) index {
-    
     return 15 + index * 15;
 }
 -(NSInteger) numberOfColumnsInScrollSelect:(KLScrollSelect *)scrollSelect {
@@ -81,6 +86,7 @@
     [cell.image setImage:[UIImage imageNamed: [dictForCell objectForKey:@"image"]]];
     //    [cell.label setText:@"Fly to"];
     //    [cell.subLabel setText: [dictForCell objectForKey:@"title"]];
+    [cell layoutSubviews];
     return cell;
 }
 - (void)scrollSelect:(KLScrollSelect *)tableView didSelectCellAtIndexPath:(KLIndexPath *)indexPath {
@@ -89,6 +95,14 @@
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index {
     return 150;
 }
+
+-(CGFloat)columnWidthAtIndex:(NSInteger)index
+{
+    if (index)
+        return self.view.frame.size.width - leftColumnWidth;
+    return leftColumnWidth;
+}
+
 - (IBAction)didSelectTweetButton:(id)sender {
     SLComposeViewController* shareViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
     [shareViewController addURL:[NSURL URLWithString:@"https://github.com/KieranLafferty/KLScrollSelect"]];
