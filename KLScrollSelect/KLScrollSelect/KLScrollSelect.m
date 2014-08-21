@@ -89,7 +89,6 @@
         KLScrollingColumn* column = [[KLScrollingColumn alloc] initWithFrame:columnFrame style:UITableViewStylePlain];
         
         [column setDataSource:self];
-        [column setRowHeight: [self scrollSelect:self heightForColumnAtIndex:count]];
         [column setSeparatorStyle: UITableViewCellSeparatorStyleNone];
         [column setBackgroundColor:[UIColor clearColor]];
         [column setColumnDelegate:self];
@@ -111,6 +110,15 @@
         }
     }
     
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger columnIndex = [self indexOfColumn: (KLScrollingColumn*)tableView];
+    if ([self.delegate respondsToSelector:@selector(scrollSelect:heightForCellAtIndexPath:)]) {
+        return [self.delegate scrollSelect:self heightForCellAtIndexPath:[KLIndexPath indexPathForRow:indexPath.row inSection:indexPath.section inColumn:columnIndex]];
+    }
+    else
+        return 310;
 }
 
 #pragma mark - Driver & Passenger animation implementation

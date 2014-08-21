@@ -21,6 +21,7 @@
 @end
 @protocol KLScrollSelectDelegate <NSObject>
 @optional
+- (CGFloat)scrollSelect:(KLScrollSelect *)tableView heightForCellAtIndexPath:(KLIndexPath *)indexPath;
 - (void)scrollSelect:(KLScrollSelect *)tableView didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
 @end
 @protocol KLScrollSelectDataSource <NSObject>
