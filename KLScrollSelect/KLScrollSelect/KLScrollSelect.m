@@ -111,15 +111,6 @@
     }
     
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger columnIndex = [self indexOfColumn: (KLScrollingColumn*)tableView];
-    if ([self.delegate respondsToSelector:@selector(scrollSelect:heightForCellAtIndexPath:)]) {
-        return [self.delegate scrollSelect:self heightForCellAtIndexPath:[KLIndexPath indexPathForRow:indexPath.row inSection:indexPath.section inColumn:columnIndex]];
-    }
-    else
-        return 310;
-}
 
 #pragma mark - Driver & Passenger animation implementation
 -(void) synchronizeContentOffsetsWithDriver:(KLScrollingColumn*) drivingColumn {
@@ -218,7 +209,17 @@
                                                                                       inColumn: columnIndex]];
     }
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger columnIndex = [self indexOfColumn: (KLScrollingColumn*)tableView];
+    NSIndexPath* translatedIndex = TRANSLATED_INDEX_PATH(indexPath, [self scrollSelect: self
+                                                           numberOfRowsInColumnAtIndex: columnIndex]);
+    if ([self.delegate respondsToSelector:@selector(scrollSelect:heightForCellAtIndexPath:)]) {
+        return [ self.delegate scrollSelect:self heightForCellAtIndexPath:[KLIndexPath indexPathForRow:translatedIndex.row inSection:translatedIndex.section inColumn:columnIndex]];
+    }
+    else
+        return 310;
+}
 #pragma mark - Delegate Implementation
 - (CGFloat) scrollSelect: (KLScrollSelect*) scrollSelect heightForColumnAtIndex: (NSInteger) index {
     if ([self.dataSource respondsToSelector:@selector(scrollSelect:heightForColumnAtIndex:)]) {
